@@ -1,0 +1,29 @@
+{
+  "*.js": [
+    "eslint --fix"
+  ],
+  "*.cjs": [
+    "eslint --fix"
+  ],
+  "*.mjs": [
+    "eslint --fix"
+  ],
+  "*.ts": [
+    "eslint --fix"
+  ],
+  "*.cts": [
+    "eslint --fix"
+  ],
+  "*.mts": [
+    "eslint --fix"
+  ],
+  "*.jsx": [
+    "eslint --fix"
+  ],
+  "*.tsx": [
+    "eslint --fix"
+  ],
+  "*.less": "stylelint --fix --allow-empty-input",
+  "*.scss": "stylelint --fix --allow-empty-input",
+  "*.css": "stylelint --fix --allow-empty-input"
+}
