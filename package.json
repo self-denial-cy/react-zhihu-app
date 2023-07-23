@@ -18,6 +18,8 @@
     "stylelint": "stylelint \"src/**/*.{less,scss,css}\" --ignore-path .gitignore --fix --allow-empty-input"
   },
   "dependencies": {
+    "amfe-flexible": "^2.2.1",
+    "antd-mobile": "^5.32.0",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
     "qs": "^6.11.2",
@@ -80,6 +82,7 @@
     "postcss-loader": "^6.2.1",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.0.1",
+    "postcss-pxtorem": "^6.0.0",
     "postcss-scss": "^4.0.6",
     "prettier": "^2.8.8",
     "prompts": "^2.4.2",

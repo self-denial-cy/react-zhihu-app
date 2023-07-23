@@ -1,5 +1,13 @@
 {
   "presets": [
-    "react-app"
+    [
+      "react-app",
+      {
+        "targets": {
+          "chrome": "49",
+          "ios": "10"
+        }
+      }
+    ]
   ]
 }

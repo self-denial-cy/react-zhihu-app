@@ -134,7 +134,14 @@ module.exports = function (webpackEnv) {
                   // Adds PostCSS Normalize as the reset css with default options,
                   // so that it honors browserslist config in package.json
                   // which in turn let's users customize the target behavior as per their needs.
-                  'postcss-normalize'
+                  'postcss-normalize',
+                  [
+                    'postcss-pxtorem',
+                    {
+                      rootValue: 75,
+                      propList: ['*']
+                    }
+                  ]
                 ]
               : [
                   'tailwindcss',
@@ -146,6 +153,13 @@ module.exports = function (webpackEnv) {
                         flexbox: 'no-2009'
                       },
                       stage: 3
+                    }
+                  ],
+                  [
+                    'postcss-pxtorem',
+                    {
+                      rootValue: 75,
+                      propList: ['*']
                     }
                   ]
                 ]
@@ -392,7 +406,11 @@ module.exports = function (webpackEnv) {
                   [
                     require.resolve('babel-preset-react-app'),
                     {
-                      runtime: hasJsxRuntime ? 'automatic' : 'classic'
+                      runtime: hasJsxRuntime ? 'automatic' : 'classic',
+                      targets: {
+                        chrome: '49',
+                        ios: '10'
+                      }
                     }
                   ]
                 ],
