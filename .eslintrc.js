@@ -11,6 +11,7 @@ module.exports = {
   extends: ['eslint:recommended', 'react-app', 'react-app/jest', 'plugin:prettier/recommended'],
   rules: {
     'no-undef': 0,
-    'no-unused-vars': 0
+    'no-unused-vars': 0,
+    'no-empty': 0
   }
 };
