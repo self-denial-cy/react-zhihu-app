@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import { Swiper, Image } from 'antd-mobile';
+import { Swiper, Image, Divider, DotLoading } from 'antd-mobile';
 import { Link } from 'react-router-dom';
-import { HomeHeader } from '../components';
+import { HomeHeader, NewsItem, Skeleton } from '../components';
 import '../styles/scss/home.scss';
 
 export default function Home() {
@@ -39,6 +39,21 @@ export default function Home() {
             ))}
           </Swiper>
         ) : null}
+      </div>
+      {/* <Skeleton /> */}
+      <div className="news">
+        <Divider contentPosition="left">7月25日</Divider>
+        <div className="list">
+          <NewsItem />
+          <NewsItem />
+          <NewsItem />
+          <NewsItem />
+          <NewsItem />
+        </div>
+      </div>
+      <div className="loadmore">
+        <DotLoading />
+        <span>数据加载中</span>
       </div>
     </div>
   );
