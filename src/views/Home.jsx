@@ -28,7 +28,28 @@ export default function Home() {
   }, []);
 
   // 初始渲染完毕，设置监听器，实现触底加载更多
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const loadMoreEl = loadMore.current;
+    let io = new IntersectionObserver(async (change) => {
+      const { isIntersecting } = change[0];
+      if (isIntersecting) {
+        // 加载更多
+        try {
+          const { today, news } = await fetch('/api/home.json').then((res) => res.json());
+          newsData.push({
+            date: today,
+            list: news
+          });
+          setNewsData([...newsData]);
+        } catch (_) {}
+      }
+    });
+    io.observe(loadMoreEl);
+    return () => {
+      io.unobserve(loadMoreEl);
+      io = null;
+    };
+  }, []);
 
   return (
     <div className="home_view">
