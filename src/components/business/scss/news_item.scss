@@ -5,6 +5,16 @@
   a {
     display: block;
     height: 100%;
+    &:visited {
+      .content {
+        .title {
+          color: #999;
+        }
+        .author {
+          color: #ccc;
+        }
+      }
+    }
   }
   .adm-image {
     position: absolute;
@@ -22,6 +32,21 @@
         width: 50px;
         height: 50px;
       }
+    }
+  }
+  .content {
+    margin-right: 180px;
+    .title {
+      overflow: hidden;
+      max-height: 80px;
+      line-height: 40px;
+      font-size: 32px;
+      color: #000;
+    }
+    .author {
+      line-height: 40px;
+      font-size: 24px;
+      color: #999;
     }
   }
 }
