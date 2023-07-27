@@ -291,6 +291,7 @@
       "-webkit-tap-highlight-color"
     ],
     "selector-class-pattern": null,
-    "selector-pseudo-class-no-unknown": null
+    "selector-pseudo-class-no-unknown": null,
+    "declaration-block-no-redundant-longhand-properties": null
   }
 }
