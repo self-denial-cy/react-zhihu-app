@@ -1,4 +1,11 @@
 .detail_view {
+  height: 100%;
+  .content {
+    overflow-y: auto;
+    box-sizing: border-box;
+    height: calc(100% - 90px);
+    font-size: 28px;
+  }
   .tab_bar {
     display: flex;
     position: fixed;
