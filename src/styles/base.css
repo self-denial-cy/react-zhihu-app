@@ -13,3 +13,19 @@ body {
   height: 100%;
   background-color: #fff;
 }
+:root:root {
+  --adm-radius-s: 8px;
+  --adm-radius-m: 16px;
+  --adm-radius-l: 24px;
+  --adm-font-size-1: 18px;
+  --adm-font-size-2: 20px;
+  --adm-font-size-3: 22px;
+  --adm-font-size-4: 24px;
+  --adm-font-size-5: 26px;
+  --adm-font-size-6: 28px;
+  --adm-font-size-7: 30px;
+  --adm-font-size-8: 32px;
+  --adm-font-size-9: 34px;
+  --adm-font-size-10: 36px;
+  --adm-font-size-main: var(--adm-font-size-5);
+}

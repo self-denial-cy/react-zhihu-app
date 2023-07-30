@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { flushSync } from 'react-dom';
 import { Badge } from 'antd-mobile';
 import { LeftOutline, MessageOutline, LikeOutline, StarOutline, MoreOutline, StarFill } from 'antd-mobile-icons';
 import { Skeleton } from '../components';
@@ -9,18 +10,39 @@ export default function Detail(props) {
   const [info, setInfo] = useState(null);
 
   useEffect(() => {
-    console.log(props.params.id); // 详情id
     (async () => {
-      const { content } = await fetch('/api/detail.json').then((res) => res.json());
-      console.log(content);
+      const { content, css } = await fetch('/api/detail.json').then((res) => res.json());
+      flushSync(() => {
+        setInfo(content);
+        handleStyle(css);
+      });
+      // 在这里可以获取到动态添加的 DOM
+      // console.log(document.querySelector('.DailyHeader'));
     })();
+
+    return () => {
+      // 组件销毁时移除动态添加的样式表
+      const links = document.querySelectorAll('.dynamic_style_link');
+      if (!links || !links.length) return;
+      links.forEach((_) => document.head.removeChild(_));
+    };
   }, []);
+
+  function handleStyle(css) {
+    css = css || [];
+    css.forEach((_) => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = _;
+      link.className = 'dynamic_style_link';
+      document.head.appendChild(link);
+    });
+  }
 
   return (
     <div className="detail_view">
-      <div className="content">
-        <Skeleton />
-      </div>
+      {/* 类似 Vue 的 v-html */}
+      <div className="content">{info ? <div dangerouslySetInnerHTML={{ __html: info }}></div> : <Skeleton />}</div>
       <div className="tab_bar">
         <div
           className="back"

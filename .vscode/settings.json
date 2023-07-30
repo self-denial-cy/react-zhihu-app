@@ -100,6 +100,7 @@
     "dotall",
     "dotenv",
     "eastasianwidth",
+    "elbk",
     "emittery",
     "encodeurl",
     "entrypoints",
@@ -210,6 +211,7 @@
     "openapi",
     "optimise",
     "optionator",
+    "paej",
     "Parens",
     "parseurl",
     "pathinfo",
@@ -246,6 +248,7 @@
     "responselike",
     "reusify",
     "rfdc",
+    "rgba",
     "ribaudo",
     "rimraf",
     "rollup",
@@ -331,6 +334,7 @@
     "yallist",
     "yargs",
     "yocto",
-    "zhihu"
+    "zhihu",
+    "ztext"
   ]
 }
