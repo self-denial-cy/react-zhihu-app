@@ -29,3 +29,17 @@ body {
   --adm-font-size-10: 36px;
   --adm-font-size-main: var(--adm-font-size-5);
 }
+.adm-toast-mask .adm-toast-main-text {
+  padding: 24px !important;
+}
+.adm-toast-mask .adm-toast-main-icon {
+  padding: 32px !important;
+}
+.adm-toast-mask .adm-toast-main {
+  border-radius: 16px !important;
+  max-width: 70% !important;
+}
+.adm-toast-mask .adm-toast-main-icon .adm-toast-icon {
+  margin-bottom: 16px !important;
+  font-size: 72px !important;
+}
