@@ -10,6 +10,7 @@ body {
   padding-right: env(safe-area-inset-right);
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
+  max-width: 750px;
   height: 100%;
   background-color: #fff;
 }

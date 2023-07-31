@@ -13,6 +13,7 @@
     margin-bottom: env(safe-area-inset-bottom);
     border-top: 2px solid #eee;
     width: 100%;
+    max-width: 750px;
     height: 90px;
     background-color: #fff;
     .back {
@@ -41,6 +42,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    max-width: 750px;
     height: env(safe-area-inset-bottom);
     background-color: #fff;
   }

@@ -2,9 +2,9 @@
 (function (window, document) {
   function setMaxView() {
     var docEl = document.documentElement;
-    var root = document.getElementById('root');
+    // var root = document.getElementById('root');
     var deviceWidth = docEl.clientWidth;
-    root.style.maxWidth = '750px';
+    // root.style.maxWidth = '750px';
     if (deviceWidth >= 750) {
       docEl.style.fontSize = '75px';
     }

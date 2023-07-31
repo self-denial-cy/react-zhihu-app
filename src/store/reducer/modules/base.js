@@ -8,6 +8,9 @@ const initial = {
 export function baseReducer(state = initial, action) {
   state = _.cloneDeep(state);
   switch (action.type) {
+    case TYPES.BASE_USER_INFO:
+      state.info = action.info;
+      break;
     default:
       break;
   }

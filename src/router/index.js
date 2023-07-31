@@ -19,6 +19,7 @@ function createRoute(routes) {
   );
 }
 
+// TODO: 登录态校验处理
 function Element(props) {
   const { component: Component, meta } = props;
   const { title = '知乎日报' } = meta || {};
@@ -26,7 +27,7 @@ function Element(props) {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
-  const searchParams = useSearchParams();
+  const [searchParams] = useSearchParams();
   return <Component navigate={navigate} location={location} params={params} searchParams={searchParams} />;
 }
 
@@ -51,7 +52,7 @@ export function withRouter(Component) {
     const navigate = useNavigate();
     const location = useLocation();
     const params = useParams();
-    const searchParams = useSearchParams();
+    const [searchParams] = useSearchParams();
     return <Component {...props} navigate={navigate} location={location} params={params} searchParams={searchParams} />;
   };
 }

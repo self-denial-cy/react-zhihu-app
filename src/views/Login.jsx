@@ -1,11 +1,17 @@
 import { useRef, useState } from 'react';
+import { connect } from 'react-redux';
 import { Form, Input, Button, Toast } from 'antd-mobile';
 import { NavBar } from '../components';
 import { useCountdown } from '../hooks';
 import { setLocal } from '../utils';
+import action from '../store/action';
 import '../styles/scss/login.scss';
 
-export default function Login() {
+export default connect(
+  null,
+  action.base
+)(function Login(props) {
+  const { setUserInfo, searchParams, navigate } = props;
   const [form] = Form.useForm();
   const { count, start } = useCountdown();
   const codeRef = useRef('');
@@ -56,10 +62,13 @@ export default function Login() {
       setLoading(true);
       const { username, avatar } = await fetch('/api/login.json').then((res) => res.json());
       setLocal('ilg', true);
+      setUserInfo({ username, avatar });
       Toast.show({
         icon: 'success',
         content: '登录成功'
       });
+      const to = searchParams.get('to');
+      to ? navigate(to, { replace: true }) : navigate('/');
     } catch (_) {
     } finally {
       setLoading(false);
@@ -99,4 +108,4 @@ export default function Login() {
       <div className="blank"></div>
     </div>
   );
-}
+});
