@@ -60,6 +60,11 @@ export default connect(
     }
     try {
       setLoading(true);
+      /**
+       * 正常情况下，登录成功后获得 token 信息，持久化保存下，然后在请求头中加上 token 信息，请求获取用户信息后保存到全局状态
+       * 中【redux】，在路由系统中做登录态校验时，首先查看全局状态中有无用户信息，有则认为登录态有效，无则请求获取用户信息，如果
+       * token 信息有效，则可以正常获取，登录态有效，token 信息过期失效，获取不到用户信息，登录态失效
+       */
       const { username, avatar } = await fetch('/api/login.json').then((res) => res.json());
       setLocal('ilg', true);
       setUserInfo({ username, avatar });

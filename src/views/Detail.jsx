@@ -1,12 +1,20 @@
 import { useState, useEffect } from 'react';
 import { flushSync } from 'react-dom';
-import { Badge } from 'antd-mobile';
+import { connect } from 'react-redux';
+import { Badge, Toast } from 'antd-mobile';
 import { LeftOutline, MessageOutline, LikeOutline, StarOutline, MoreOutline, StarFill } from 'antd-mobile-icons';
 import { Skeleton } from '../components';
+import action from '../store/action';
+import { getLocal } from '../utils';
 import '../styles/scss/detail.scss';
 
-export default function Detail(props) {
-  const { navigate } = props;
+export default connect((state) => state, { ...action.base, ...action.store })(function Detail(props) {
+  const {
+    navigate,
+    base: { info: userInfo },
+    setUserInfo,
+    location
+  } = props;
   const [info, setInfo] = useState(null);
 
   useEffect(() => {
@@ -39,6 +47,30 @@ export default function Detail(props) {
     });
   }
 
+  useEffect(() => {
+    if (userInfo) return;
+    (async () => {
+      try {
+        if (!getLocal('ilg')) return;
+        const { username, avatar } = await fetch('/api/login.json').then((res) => res.json());
+        setUserInfo({ username, avatar });
+      } catch (_) {}
+    })();
+  }, []);
+
+  function handleStore() {
+    if (!userInfo) {
+      Toast.show({
+        icon: 'fail',
+        content: '请先完成登录'
+      });
+      navigate(`/login?to=${location.pathname}`, {
+        replace: true
+      });
+      return;
+    }
+  }
+
   return (
     <div className="detail_view">
       {/* 类似 Vue 的 v-html */}
@@ -59,9 +91,9 @@ export default function Detail(props) {
           <Badge content="999+" style={{ '--right': '-24%' }}>
             <LikeOutline />
           </Badge>
-          <span>
-            <StarFill color="#F0CE4A" />
-            {/* <StarOutline /> */}
+          <span onClick={handleStore}>
+            {/* <StarFill color="#F0CE4A" /> */}
+            <StarOutline />
           </span>
           <span>
             <MoreOutline color="#bbb" />
@@ -71,4 +103,4 @@ export default function Detail(props) {
       <div className="blank"></div>
     </div>
   );
-}
+});
