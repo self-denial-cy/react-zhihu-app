@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { flushSync } from 'react-dom';
 import { connect } from 'react-redux';
 import { Badge, Toast } from 'antd-mobile';
@@ -11,11 +11,23 @@ import '../styles/scss/detail.scss';
 export default connect((state) => state, { ...action.base, ...action.store })(function Detail(props) {
   const {
     navigate,
-    base: { info: userInfo },
     setUserInfo,
-    location
+    location,
+    store: { list },
+    queryStoreList,
+    params,
+    addStoreItem,
+    removeStoreItem
+  } = props;
+  let {
+    base: { info: userInfo }
   } = props;
   const [info, setInfo] = useState(null);
+  // 根据收藏列表和当前 params 中的 id 比对，判断当前文章是否已经被收藏
+  const isStore = useMemo(() => {
+    if (!list) return false; // 未获取到收藏列表，默认当前文章未被收藏
+    return list.some((_) => _.id === +params.id);
+  }, [list, params]);
 
   useEffect(() => {
     (async () => {
@@ -48,17 +60,21 @@ export default connect((state) => state, { ...action.base, ...action.store })(fu
   }
 
   useEffect(() => {
-    if (userInfo) return;
     (async () => {
-      try {
-        if (!getLocal('ilg')) return;
-        const { username, avatar } = await fetch('/api/login.json').then((res) => res.json());
-        setUserInfo({ username, avatar });
-      } catch (_) {}
+      if (!userInfo && getLocal('ilg')) {
+        try {
+          const { username, avatar } = await fetch('/api/login.json').then((res) => res.json());
+          setUserInfo({ username, avatar });
+          userInfo = { username, avatar };
+        } catch (_) {}
+      }
+      if (userInfo && !list) {
+        console.log(await queryStoreList());
+      }
     })();
   }, []);
 
-  function handleStore() {
+  async function handleStore() {
     if (!userInfo) {
       Toast.show({
         icon: 'fail',
@@ -69,6 +85,20 @@ export default connect((state) => state, { ...action.base, ...action.store })(fu
       });
       return;
     }
+    // 收藏或取消收藏
+    if (isStore) {
+      await removeStoreItem(params.id); // 模拟取消收藏
+      Toast.show({
+        icon: 'success',
+        content: '已取消收藏'
+      });
+      return;
+    }
+    await addStoreItem(params.id); // 模拟添加收藏
+    Toast.show({
+      icon: 'success',
+      content: '收藏成功'
+    });
   }
 
   return (
@@ -91,10 +121,7 @@ export default connect((state) => state, { ...action.base, ...action.store })(fu
           <Badge content="999+" style={{ '--right': '-24%' }}>
             <LikeOutline />
           </Badge>
-          <span onClick={handleStore}>
-            {/* <StarFill color="#F0CE4A" /> */}
-            <StarOutline />
-          </span>
+          <span onClick={handleStore}>{isStore ? <StarFill color="#F0CE4A" /> : <StarOutline />}</span>
           <span>
             <MoreOutline color="#bbb" />
           </span>

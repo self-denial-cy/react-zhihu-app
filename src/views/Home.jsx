@@ -80,7 +80,7 @@ export default function Home() {
               {index !== 0 ? <Divider contentPosition="left">{dayjs(item.date).format('MM月DD日')}</Divider> : null}
               <div className="list">
                 {item.list.map((cur, idx) => (
-                  <NewsItem info={{ ...cur, idx }} key={idx} />
+                  <NewsItem info={{ ...cur }} key={idx} />
                 ))}
               </div>
             </div>

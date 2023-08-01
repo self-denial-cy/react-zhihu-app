@@ -10,7 +10,7 @@ export function NewsItem(props) {
     <div className="news_item">
       <Link
         to={{
-          pathname: `/detail/${info.idx}`
+          pathname: `/detail/${info.id}`
         }}
       >
         <div className="content">
