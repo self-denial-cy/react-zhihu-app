@@ -1,0 +1,25 @@
+.not_found_view {
+  .adm-error-block-image {
+    height: 350px;
+  }
+  .adm-error-block-description {
+    margin-top: 36px;
+  }
+  .adm-error-block-description-title {
+    font-size: 36px;
+  }
+  .adm-error-block-description-subtitle {
+    margin-top: 16px;
+  }
+  .adm-error-block-content {
+    margin-top: 24px;
+  }
+  .not_found_action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .adm-button {
+      padding: 14px 24px;
+    }
+  }
+}

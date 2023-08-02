@@ -94,7 +94,7 @@ export default connect((state) => state, { ...action.base, ...action.store })(fu
       });
       return;
     }
-    await addStoreItem(params.id); // 模拟添加收藏
+    if (!(await addStoreItem(params.id))) return; // 模拟添加收藏
     Toast.show({
       icon: 'success',
       content: '收藏成功'

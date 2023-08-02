@@ -31,10 +31,12 @@ export const storeAction = {
       try {
         const { news } = await fetch('/api/home.json').then((res) => res.json());
         const item = news.find((_) => _.id === +id);
+        if (!item) return false;
         dispatch({
           type: TYPES.STORE_ADD,
           item
         });
+        return true;
       } catch (_) {}
     };
   }

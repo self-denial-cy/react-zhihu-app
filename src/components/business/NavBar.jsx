@@ -13,7 +13,9 @@ export function NavBar(props) {
     const pathname = location.pathname;
     // 未登录时点击收藏的特殊情况处理
     if (pathname === '/login' && /^\/detail\/\d+$/.test(to)) {
-      navigate(to);
+      navigate(to, {
+        replace: true
+      });
       return;
     }
     navigate(-1);
