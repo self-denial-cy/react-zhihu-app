@@ -31,13 +31,18 @@ export default connect((state) => state.base, { ...action.base, clearStoreList: 
             <span>{info.username}</span>
           </div>
           <List mode="card">
-            <List.Item prefix={<LikeOutline />} onClick={() => {}} disabled>
+            <List.Item prefix={<LikeOutline />} disabled>
               我点赞的
             </List.Item>
-            <List.Item prefix={<StarOutline />} onClick={() => {}}>
+            <List.Item
+              prefix={<StarOutline />}
+              onClick={() => {
+                navigate('/store');
+              }}
+            >
               我的收藏
             </List.Item>
-            <List.Item prefix={<DeleteOutline />} onClick={() => {}} disabled>
+            <List.Item prefix={<DeleteOutline />} disabled>
               回收中心
             </List.Item>
           </List>

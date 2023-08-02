@@ -1,0 +1,9 @@
+.store_view {
+  height: 100%;
+  background-color: #fafbfc;
+  .view_content {
+    box-sizing: border-box;
+    padding: 10px 30px;
+    height: calc(100% - 92px);
+  }
+}
