@@ -2,6 +2,7 @@ import routes from './routes';
 import { Routes, Route, useNavigate, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { Suspense, useEffect, useState } from 'react';
 import { Mask, SpinLoading, Toast } from 'antd-mobile';
+import { KeepAlive } from 'react-activation';
 import { verifyLogin } from './utils';
 import { getLocal } from '../utils';
 import store from '../store';
@@ -24,8 +25,8 @@ function createRoute(routes) {
 }
 
 function Element(props) {
-  const { component: Component, meta, path } = props;
-  const { title = '知乎日报' } = meta || {};
+  const { component: Component, meta, path, name } = props;
+  const { title = '知乎日报', cache = false } = meta || {};
   document.title = title;
 
   const [_, _set] = useState(0);
@@ -57,10 +58,17 @@ function Element(props) {
   const location = useLocation();
   const params = useParams();
   const [searchParams] = useSearchParams();
+
   return (
     <>
       {!showLoading ? (
-        <Component navigate={navigate} location={location} params={params} searchParams={searchParams} />
+        cache ? (
+          <KeepAlive name={name} autoFreeze={false} saveScrollPosition="screen">
+            <Component navigate={navigate} location={location} params={params} searchParams={searchParams} />
+          </KeepAlive>
+        ) : (
+          <Component navigate={navigate} location={location} params={params} searchParams={searchParams} />
+        )
       ) : (
         <Mask color="white" visible={true}>
           <div className={styles.loading}>

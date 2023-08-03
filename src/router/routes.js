@@ -7,7 +7,8 @@ const routes = [
     name: 'home',
     component: _import('Home'),
     meta: {
-      title: '首页'
+      title: '首页',
+      cache: true
     }
   },
   {
