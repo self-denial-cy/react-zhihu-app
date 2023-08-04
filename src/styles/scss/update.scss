@@ -1,0 +1,75 @@
+.update_view {
+  height: 100%;
+  background-color: #fafbfc;
+  .view_content {
+    height: calc(100% - 214px);
+    .adm-list-card {
+      margin: 24px;
+      .adm-list-body {
+        border-radius: 16px;
+        .adm-list-body-inner {
+          margin-top: -2px;
+          .adm-list-item-content-prefix {
+            min-width: 140px;
+            font-size: 36px;
+          }
+          .adm-list-item-content-main {
+            padding: 24px 0;
+            font-size: 36px;
+          }
+          .adm-list-item-content-arrow {
+            margin-left: 8px;
+            font-size: 36px;
+          }
+        }
+      }
+    }
+    .adm-list {
+      --prefix-padding-right: 24px;
+      --border-inner: solid 2px var(--adm-color-border);
+      --border-top: solid 2px var(--adm-color-border);
+      --border-bottom: solid 2px var(--adm-color-border);
+      --padding-left: 24px;
+      --padding-right: 24px;
+    }
+    .adm-image-uploader-cell-delete {
+      border-radius: 0 0 0 24px;
+      width: 28px;
+      height: 28px;
+      font-size: 16px;
+      .adm-image-uploader-cell-delete-icon {
+        left: 8px;
+        top: 6px;
+        vertical-align: -18px !important;
+      }
+    }
+  }
+  .update_submit {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: env(safe-area-inset-bottom);
+    border-top: 2px solid #eee;
+    width: 100%;
+    max-width: 750px;
+    height: 120px;
+    background-color: #fff;
+    .adm-button.adm-button-large {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+    .adm-button-block {
+      width: 90%;
+    }
+  }
+  .blank {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 750px;
+    height: env(safe-area-inset-bottom);
+    background-color: #fff;
+  }
+}

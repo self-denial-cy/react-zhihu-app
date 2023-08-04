@@ -1,3 +1,5 @@
+import Home from '../views/Home'; // ! react-activation 实现组件 keepalive 会与异步路由冲突，导致组件页面白屏
+
 const _import = require(`./_import_${process.env.NODE_ENV}`);
 // const _import = require('./_import_production');
 
@@ -5,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: _import('Home'),
+    component: Home,
     meta: {
       title: '首页',
       cache: true

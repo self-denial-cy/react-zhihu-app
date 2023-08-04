@@ -25,7 +25,12 @@ export default connect((state) => state.base, { ...action.base, clearStoreList: 
         <NavBar title="个人中心" />
         <div className="view_content">
           <div className="topper">
-            <div className="avatar">
+            <div
+              className="avatar"
+              onClick={() => {
+                navigate('/update');
+              }}
+            >
               <img src={info ? info.avatar : avatar} alt="用户头像" />
             </div>
             <span>{info.username}</span>
