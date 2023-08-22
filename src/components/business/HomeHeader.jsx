@@ -25,7 +25,7 @@ export const HomeHeader = connect(
     (async () => {
       try {
         if (!getLocal('ilg')) return;
-        const { username, avatar } = await fetch(`${process.env.PUBLIC_URL}api/login.json`).then((res) => res.json());
+        const { username, avatar } = await fetch(`${process.env.PUBLIC_URL}/api/login.json`).then((res) => res.json());
         setUserInfo({ username, avatar });
       } catch (_) {}
     })();

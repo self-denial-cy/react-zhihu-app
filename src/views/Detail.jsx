@@ -31,7 +31,7 @@ export default connect((state) => state, { ...action.base, ...action.store })(fu
 
   useEffect(() => {
     (async () => {
-      const { content, css } = await fetch(`${process.env.PUBLIC_URL}api/detail.json`).then((res) => res.json());
+      const { content, css } = await fetch(`${process.env.PUBLIC_URL}/api/detail.json`).then((res) => res.json());
       flushSync(() => {
         setInfo(content);
         handleStyle(css);
@@ -63,7 +63,9 @@ export default connect((state) => state, { ...action.base, ...action.store })(fu
     (async () => {
       if (!userInfo && getLocal('ilg')) {
         try {
-          const { username, avatar } = await fetch(`${process.env.PUBLIC_URL}api/login.json`).then((res) => res.json());
+          const { username, avatar } = await fetch(`${process.env.PUBLIC_URL}/api/login.json`).then((res) =>
+            res.json()
+          );
           setUserInfo({ username, avatar });
           userInfo = { username, avatar };
         } catch (_) {}
