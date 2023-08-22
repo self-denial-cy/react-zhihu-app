@@ -29,7 +29,7 @@ export default connect(
     }
     start(30);
     try {
-      const { code } = await fetch('/api/login.json').then((res) => res.json());
+      const { code } = await fetch(`${process.env.PUBLIC_URL}api/login.json`).then((res) => res.json());
       Toast.show('验证码已发送');
       codeRef.current = code;
     } catch (_) {}
@@ -65,7 +65,7 @@ export default connect(
        * 中【redux】，在路由系统中做登录态校验时，首先查看全局状态中有无用户信息，有则认为登录态有效，无则请求获取用户信息，如果
        * token 信息有效，则可以正常获取，登录态有效，token 信息过期失效，获取不到用户信息，登录态失效
        */
-      const { username, avatar } = await fetch('/api/login.json').then((res) => res.json());
+      const { username, avatar } = await fetch(`${process.env.PUBLIC_URL}api/login.json`).then((res) => res.json());
       setLocal('ilg', true);
       setUserInfo({ username, avatar });
       Toast.show({

@@ -5,7 +5,7 @@ export const storeAction = {
     return async (dispatch) => {
       let list = null;
       try {
-        const { list: storeList } = await fetch('/api/store.json').then((res) => res.json());
+        const { list: storeList } = await fetch(`${process.env.PUBLIC_URL}api/store.json`).then((res) => res.json());
         list = storeList;
       } catch (_) {}
       dispatch({
@@ -29,7 +29,7 @@ export const storeAction = {
   addStoreItem(id) {
     return async (dispatch) => {
       try {
-        const { news } = await fetch('/api/home.json').then((res) => res.json());
+        const { news } = await fetch(`${process.env.PUBLIC_URL}api/home.json`).then((res) => res.json());
         const item = news.find((_) => _.id === +id);
         if (!item) return false;
         dispatch({

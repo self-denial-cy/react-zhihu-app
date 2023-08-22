@@ -15,7 +15,9 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       try {
-        const { today, top_banners, news } = await fetch('/api/home.json').then((res) => res.json());
+        const { today, top_banners, news } = await fetch(`${process.env.PUBLIC_URL}api/home.json`).then((res) =>
+          res.json()
+        );
         setToday(today);
         setBannerData(top_banners);
         newsData.push({
@@ -35,7 +37,7 @@ export default function Home() {
       if (isIntersecting) {
         // 加载更多
         try {
-          const { today, news } = await fetch('/api/home.json').then((res) => res.json());
+          const { today, news } = await fetch(`${process.env.PUBLIC_URL}api/home.json`).then((res) => res.json());
           newsData.push({
             date: today,
             list: news

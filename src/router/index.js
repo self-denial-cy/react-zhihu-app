@@ -46,7 +46,7 @@ function Element(props) {
         });
       } else {
         try {
-          const { username, avatar } = await fetch('/api/login.json').then((res) => res.json());
+          const { username, avatar } = await fetch(`${process.env.PUBLIC_URL}api/login.json`).then((res) => res.json());
           store.dispatch(action.base.setUserInfo({ username, avatar }));
           _set(Date.now()); // 获取用户信息后刷新 Element，成功渲染目标组件
         } catch (_) {}
