@@ -1,4 +1,38 @@
-#### React KeepAlive 方案
+# 介绍
+
+基于 create-react-app 构建工程，react18、react-router-dom6、redux + redux-thunk 实现业务，antd-mobile 组件库构建 UI。【练手小项目】
+
+# 运行
+
+## 安装依赖
+
+```bash
+# using npm
+npm i
+
+# OR using Yarn
+yarn install
+```
+
+## 启动开发服务
+
+```bash
+# using npm
+npm start
+
+# OR using Yarn
+yarn start
+```
+
+# TODO
+
+- 调整骨架屏的样式
+
+- 详情页头图区域 fallback 状态调整
+
+# 扩展
+
+## React KeepAlive 方案
 
 - 非标准的组件缓存，只是数据缓存
 
